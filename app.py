@@ -1,4 +1,17 @@
-from database.db import users_collection
+import streamlit as st
+from resume_parser.parser import extract_text_from_pdf
 
-users_collection.insert_one({"test": "connection"})
-print("MongoDB Connected Successfully!")
+st.set_page_config(page_title="SkillSync AI", layout="wide")
+
+st.title("SkillSync AI 🚀")
+st.subheader("AI-Powered Skill Gap Analyzer")
+
+uploaded_file = st.file_uploader("Upload your Resume (PDF)", type=["pdf"])
+
+if uploaded_file is not None:
+    st.success("Resume uploaded successfully ✅")
+
+    extracted_text = extract_text_from_pdf(uploaded_file)
+
+    st.subheader("Extracted Resume Text")
+    st.text_area("Resume Content", extracted_text, height=300)
