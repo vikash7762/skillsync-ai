@@ -84,3 +84,19 @@ if uploaded_file is not None:
     reports_collection.insert_one(report_data)
 
     st.success("✅ Analysis saved to database successfully!")
+    
+st.markdown("---")
+st.header("📂 Previous Analysis Reports")
+
+all_reports = list(reports_collection.find().sort("created_at", -1))
+
+if all_reports:
+    for report in all_reports:
+        with st.expander(f"Role: {report['role']} | Gap: {report['gap_percentage']}%"):
+            st.write("**Resume Skills:**", report["resume_skills"])
+            st.write("**Matched Skills:**", report["matched_skills"])
+            st.write("**Missing Skills:**", report["missing_skills"])
+            st.write("**Skill Gap:**", report["gap_percentage"], "%")
+            st.write("**Created At:**", report["created_at"])
+else:
+    st.info("No reports found yet.")
