@@ -22,7 +22,7 @@ st.markdown("""
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 .section-title {
     font-size: 22px;
@@ -98,12 +98,12 @@ if not st.session_state.user:
 
 # ---------------- HERO ----------------
 st.markdown(f"""
-<div style="text-align:center;">
-    <h1 style="color:#4CAF50;">🚀 SkillSync AI</h1>
-    <h4 style="color:gray;">AI-Powered Career Intelligence Platform</h4>
-    <p>Welcome <b>{st.session_state.user}</b> 👋</p>
+<div style="text-align:center; margin-bottom:5px;">
+    <h1 style="color:#4CAF50; margin-bottom:5px;">🚀 SkillSync AI</h1>
+    <h4 style="color:gray; margin-top:0px;">AI-Powered Career Intelligence Platform</h4>
+    <p style="margin-top:5px;">Welcome <b>{st.session_state.user}</b> 👋</p>
 </div>
-<hr>
+<hr style="margin-top:5px;margin-bottom:10px;border:1px solid #1f2937;">
 """, unsafe_allow_html=True)
 
 # ---------------- JOB ROLES ----------------
@@ -139,7 +139,6 @@ if uploaded_file is not None:
 
     extracted_text = extract_text_from_pdf(uploaded_file)
     skills = extract_skills(extracted_text)
-
     required_skills = job_roles[selected_role]
 
     with st.spinner("Analyzing resume using AI..."):
